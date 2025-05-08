@@ -26,7 +26,29 @@ const almostSortedLargeArray = Array.from({ length: 100_000 }, (_, i) => i + 1).
 // | quickSort                 | 60ms       | error            | error             | 110ms                  |
 // | quickSortRandomPivot      | 60ms       | 40ms             | 50ms              | 40ms                   |
 // | radixSort                 | 85ms       | 70ms             | 95ms              | 80ms                   |
+// | default js sort           | 85ms       | 7ms              | 6ms               | 10ms                   |
 
+
+
+/**
+ * QuickSort має таку ж складність як і mergeSort, але він швидший, бо вимагає більше часу на опрацювання однієї ітерації.
+ * Припустимо у нас є 2 функції print1 і print2
+ * 
+ * function print1(){ 
+ *  for(let item of arr) {
+ *    console.log("Hello")
+ *  }
+ * }
+ * 
+ * function print2(){ 
+ *  for(let item of arr) {
+ *    sleep(1)
+ *    console.log("Hello")
+ *  }
+ * }
+ * 
+ * У них однакова складність - O(n), але print2 буде кожну ітерацію циклу робити на 1 секунду довше. Теж саме і з quickSort та mergeSort
+ */
 
 console.log('START')
 
@@ -67,6 +89,10 @@ console.log('START')
 // console.time("radixSort")
 // radixSort(largeArray) // 85 ms
 // console.timeEnd("radixSort")
+
+// console.time("defaultJsSort")
+// largeArray.sort((a, b) => a - b) // 85 ms
+// console.timeEnd("defaultJsSort")
 
 
 
@@ -115,6 +141,10 @@ console.log('START')
 // radixSort(largeArraySorted) // 70 ms
 // console.timeEnd("radixSort")
 
+// console.time("defaultJsSort")
+// largeArraySorted.sort((a, b) => a - b) // 7 ms
+// console.timeEnd("defaultJsSort")
+
 
 // *******************************   largeArrayReversed   ***************************************************************
 
@@ -154,6 +184,9 @@ console.log('START')
 // radixSort(largeArrayReversed) // 95 ms
 // console.timeEnd("radixSort")
 
+// console.time("defaultJsSort")
+// largeArrayReversed.sort((a, b) => a - b) // 6 ms
+// console.timeEnd("defaultJsSort")
 
 // *******************************   almostSortedLargeArray   ***************************************************************
 
@@ -193,3 +226,7 @@ console.log('START')
 // console.time("radixSort")
 // radixSort(almostSortedLargeArray) // 80 ms
 // console.timeEnd("radixSort")
+
+// console.time("defaultJsSort")
+// almostSortedLargeArray.sort((a, b) => a - b) // 10 ms
+// console.timeEnd("defaultJsSort")

@@ -34,47 +34,47 @@ class DirectedGraph {
 }
 
 
-const undirectedGraph = new DirectedGraph()
-undirectedGraph.addVertex("Kyiv")
-undirectedGraph.addVertex("Lviv")
-undirectedGraph.addVertex("London")
-undirectedGraph.addVertex("Rome")
-undirectedGraph.addVertex("Paris")
+const directedGraph = new DirectedGraph()
+directedGraph.addVertex("Kyiv")
+directedGraph.addVertex("Lviv")
+directedGraph.addVertex("London")
+directedGraph.addVertex("Rome")
+directedGraph.addVertex("Paris")
 
-undirectedGraph.addEdge("Kyiv", "London")
-undirectedGraph.addEdge("Kyiv", "Rome")
-undirectedGraph.addEdge("Lviv", "Paris")
-undirectedGraph.addEdge("Paris", "Lviv")
+directedGraph.addEdge("Kyiv", "London")
+directedGraph.addEdge("Kyiv", "Rome")
+directedGraph.addEdge("Lviv", "Paris")
+directedGraph.addEdge("Paris", "Lviv")
 
-console.log(undirectedGraph.adjacencyList);
+console.log(directedGraph.adjacencyList);
 
-undirectedGraph.removeEdge("Paris", "Lviv")
-console.log(undirectedGraph.adjacencyList);
+directedGraph.removeEdge("Paris", "Lviv")
+console.log(directedGraph.adjacencyList);
 
 // REMOVE VERTEX
-// const undirectedGraph = new DirectedGraph()
-// undirectedGraph.addVertex("Kyiv")
-// undirectedGraph.addVertex("Lviv")
-// undirectedGraph.addVertex("London")
-// undirectedGraph.addVertex("Rome")
-// undirectedGraph.addVertex("Paris")
-// undirectedGraph.addVertex("Kharkiv")
+// const directedGraph = new DirectedGraph()
+// directedGraph.addVertex("Kyiv")
+// directedGraph.addVertex("Lviv")
+// directedGraph.addVertex("London")
+// directedGraph.addVertex("Rome")
+// directedGraph.addVertex("Paris")
+// directedGraph.addVertex("Kharkiv")
 
-// undirectedGraph.addEdge("Kyiv", "London")
-// undirectedGraph.addEdge("Kyiv", "Rome")
-// undirectedGraph.addEdge("Kyiv", "Kharkiv")
-// undirectedGraph.addEdge("Lviv", "Paris")
-// undirectedGraph.addEdge("Lviv", "Kharkiv")
-// undirectedGraph.addEdge("Kharkiv", "London")
-// undirectedGraph.addEdge("Rome", "London")
-// undirectedGraph.addEdge("Paris", "Rome")
-// undirectedGraph.addEdge("Paris", "Kyiv")
-// undirectedGraph.addEdge("Paris", "Kharkiv")
-// undirectedGraph.addEdge("London", "Kyiv")
-// undirectedGraph.addEdge("London", "Paris")
+// directedGraph.addEdge("Kyiv", "London")
+// directedGraph.addEdge("Kyiv", "Rome")
+// directedGraph.addEdge("Kyiv", "Kharkiv")
+// directedGraph.addEdge("Lviv", "Paris")
+// directedGraph.addEdge("Lviv", "Kharkiv")
+// directedGraph.addEdge("Kharkiv", "London")
+// directedGraph.addEdge("Rome", "London")
+// directedGraph.addEdge("Paris", "Rome")
+// directedGraph.addEdge("Paris", "Kyiv")
+// directedGraph.addEdge("Paris", "Kharkiv")
+// directedGraph.addEdge("London", "Kyiv")
+// directedGraph.addEdge("London", "Paris")
 
-// console.log(undirectedGraph.adjacencyList);
+// console.log(directedGraph.adjacencyList);
 
-// undirectedGraph.removeVertex('Kyiv')
-// console.log(undirectedGraph.adjacencyList);
+// directedGraph.removeVertex('Kyiv')
+// console.log(directedGraph.adjacencyList);
 

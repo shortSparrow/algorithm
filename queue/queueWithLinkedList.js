@@ -17,7 +17,7 @@ class Queue {
     this.size = 0;
   }
 
-  putToQueue(value) {
+  enqueue(value) {
     const newNode = new Node(value)
     if(this.size === 0) {
       this.first = newNode
@@ -32,7 +32,7 @@ class Queue {
     return newNode
   }
 
-  removeFromQueue() {
+  dequeue() {
     if(this.size === 0) {
       return null
     }
@@ -49,11 +49,11 @@ class Queue {
 }
 
 const queue = new Queue()
-queue.putToQueue(1)
-queue.putToQueue(2)
-queue.putToQueue(3)
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
 
-queue.removeFromQueue(3)
+queue.dequeue()
 
 
 /**

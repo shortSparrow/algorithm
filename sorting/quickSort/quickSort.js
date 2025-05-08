@@ -133,7 +133,7 @@ module.exports = {quickSort}
   callstack містить аж 32 функції
 
 
-  А якщо дані розподілені рандомно то а callstack може залетіти наприклад
+  А якщо дані розподілені рандомно то в callstack може залетіти наприклад
   5 функцій, потім вони очистяться (бо відбулося сортування) і в callstack 
   залетять нові, а в прикладі вище в callstack залетять n функцій (якщо n 
   це довжина масиву)
@@ -158,3 +158,22 @@ module.exports = {quickSort}
 
 
 
+/**
+ * 
+ * У книзі Grokking algorithm quickSort представлений в дещо іншому вигляді
+ * 
+ * def quickSort(array):
+ *  if len(array) < 2:
+ *    return array
+ *  else:
+ *    pivot = array[0]
+ *    less = [i for i in array[1:] if i <= pivot] # Всі елементи що <= pivot
+ *    greater = [i for i in array[1:] if i > pivot] # Всі елементи що > pivot
+ * 
+ *    return quickSort(less) + [pivot] + quickSort(greater)
+ * 
+ * По суті це теж саме що я роблю у JS, тільки тут більше витрат на пам'ять бо треба зберігати
+ * less і greater, але цей варіант простіший для розуміння
+ * 
+ * 
+ */
