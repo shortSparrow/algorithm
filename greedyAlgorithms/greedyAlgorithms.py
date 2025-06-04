@@ -1,4 +1,4 @@
-'''
+"""
 Greedy Algorithm це сімейство алгоритмів які не дають точного результату, але
 швидко дають приблизний результат (точніше не оптимальний)
 
@@ -33,35 +33,59 @@ set(["beets", "carrots"]) - difference (поверне тільки те що є
 Складність такого алгоритму буде O(n^2), де n - це кількість станцій
 
 Цей жадібний алгоритм завжди знайде набір станцій, які покривають усі необхідні штати, якщо таке покриття взагалі існує
-'''
+"""
 
-stations = {}
-stations ["kone"] = set(["id", "nv", "ut"])
-stations ["ktwo"] = set(["wa", "id", "mt"])
-stations ["kthree"] = set(["or", "nv", "ca"])
-stations["kfour"] = set(["nv", "ut"])
-stations ["kfive"] = set(["ca", "az"])
+def greedyAlgorithm(states_needed):
+  final_stations = set()
 
-final_stations = set()
+  while states_needed:
+      best_station = None
+      states_covered = set()
+      for station, states in stations.items():
+          covered = (
+              states_needed & states
+          )  # дістаю ті штати які покриває стація, які у мене ще не покриті
+          if len(covered) > len(states_covered):
+              best_station = station
+              states_covered = covered
+
+      states_needed -= states_covered
+      final_stations.add(best_station)
+      # states_covered.clear() # робити не обов'язково оскільки як тільки пройдемося по циклу for і перейдемо до
+      # нової ітерації while, то states_covered перествориться наново
+
+  return final_stations
+
+
+stations = {
+    "kone": set(["id", "nv", "ut"]),
+    "ktwo": set(["wa", "id", "mt"]),
+    "kthree": set(["or", "nv", "ca"]),
+    "kfour": set(["nv", "ut"]),
+    "kfive": set(["ca", "az"]),
+}
+
 states_needed = set(["mt", "wa", "or", "id", "nv", "ut", "ca", "az"])
+result = greedyAlgorithm(states_needed)
+print(result)  # {'kone', 'kfive', 'ktwo', 'kthree'}
 
-while states_needed:
-  best_station = None
-  states_covered = set()
-  for station, states in stations.items():
-    covered = states_needed & states # дістаю ті штати які покриває стація, які у мене ще не покриті  
-    if len(covered) > len(states_covered):
-      best_station = station
-      states_covered = covered
 
-  states_needed -= states_covered
-  final_stations.add(best_station)
-  # states_covered.clear() # робити не обов'язково оскільки як тільки пройдемося по циклу for і перейдемо до
-  # нової ітерації while, то states_covered перествориться наново
 
-print(final_stations) # {'kone', 'kfive', 'ktwo', 'kthree'}
+# для порівняння з exact algorithm, тут такий самий набір даних
+# stations = {
+#     "Станція-Пастка": {"s1", "s2", "s3"}, # Ця станція покриває 3 штати
+#     "Станція А": {"s1", "s4"},           # Покриває 2 штати
+#     "Станція B": {"s2", "s5"},           # Покриває 2 штати
+#     "Станція C": {"s3", "s6"}            # Покриває 2 штати
+# }
 
-'''
+# states_needed = set(["s1", "s2", "s3", "s4", "s5", "s6"])
+# result = greedyAlgorithm(states_needed)
+# print(result)  # {'Станція-Пастка', 'Станція A', 'Станція B', 'Станція C'}, а у exactAlgorithm буде {'Станція A', 'Станція B', 'Станція C'}
+
+
+
+"""
 Складність такого greedy algorithm буде O(n^2)
 Складність точного алгоритму буде O(n!)
 
@@ -76,4 +100,4 @@ print(final_stations) # {'kone', 'kfive', 'ktwo', 'kthree'}
 |      100      |  4*10^21 years    |    16.67 min       |
 ---------------------------------------------------------
 
-'''
+"""
