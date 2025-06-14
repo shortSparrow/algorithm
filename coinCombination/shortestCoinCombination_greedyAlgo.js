@@ -18,7 +18,7 @@
  * не може бути відката
  * 
  * */ 
-// function shortestCoinCombination(coins, amount) {
+// function shortestCoinCombinationGreedyAlgo(coins, amount) {
 //   const _coins = [...coins]
 //   let diff = amount
 //   const coins_list = []
@@ -57,7 +57,7 @@
 
 
 // рішення Gemini (справжній greedy algorithm без відката)
-function shortestCoinCombination(coins, amount) {
+function shortestCoinCombinationGreedyAlgo(coins, amount) {
   const result = []; // Масив для зберігання використаних монет
   let remainingAmount = amount; // Залишок суми, який потрібно набрати
 
@@ -94,10 +94,10 @@ function shortestCoinCombination(coins, amount) {
 
 
 // Приклади з умови задачі:
-console.log(shortestCoinCombination([1, 2, 3, 4, 5], 11));     // Очікується: [5, 5, 1]
-// console.log(shortestCoinCombination([5, 10, 15, 20, 25], 85)); // Очікується: [25, 25, 25, 10]
-// console.log(shortestCoinCombination([1, 5, 6, 9], 11));       // Очікується: [9, 1, 1]
+console.log(shortestCoinCombinationGreedyAlgo([1, 2, 3, 4, 5], 11));     // Очікується: [5, 5, 1]
+// console.log(shortestCoinCombinationGreedyAlgo([5, 10, 15, 20, 25], 85)); // Очікується: [25, 25, 25, 10]
+// console.log(shortestCoinCombinationGreedyAlgo([1, 5, 6, 9], 11));       // Очікується: [9, 1, 1]
 
 
 // Випадок коли рішення gemini не працює, бо у нього "правильний" greedy algorithm, навідміну від мого
-// console.log(shortestCoinCombination([2, 3, 4, 6], 7));     // Очікується: [ 4, 3 ]
+// console.log(shortestCoinCombinationGreedyAlgo([2, 3, 4, 6], 7));     // Очікується: [ 4, 3 ]

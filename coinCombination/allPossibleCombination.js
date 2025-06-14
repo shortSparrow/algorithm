@@ -7,7 +7,7 @@
  * способами були створені числа по яким вже був обрахунок)
  */
 
-function allPossibleCombination(coins, amount) {
+function allPossibleCombinationDP(coins, amount) {
   const dp = new Array(amount + 1).fill(0);
   dp[0] = 1;
 
@@ -24,20 +24,20 @@ function allPossibleCombination(coins, amount) {
 }
 
 const denominations = [1,2,3]
-allPossibleCombination(denominations, 5)
+allPossibleCombinationDP(denominations, 5)
 
 
 // const denominations = [1, 5, 10, 25]
-// allPossibleCombination(denominations, 1) // 1
-// allPossibleCombination(denominations, 2) // 1
-// allPossibleCombination(denominations, 5) // 2
-// allPossibleCombination(denominations, 10) // 4
-// allPossibleCombination(denominations, 25) // 13
-// allPossibleCombination(denominations, 45) // 39
-// allPossibleCombination(denominations, 100) // 242
-// allPossibleCombination(denominations, 145) // 622
-// allPossibleCombination(denominations, 1451) // 425663
-// allPossibleCombination(denominations, 14511) // 409222339
+// allPossibleCombinationDP(denominations, 1) // 1
+// allPossibleCombinationDP(denominations, 2) // 1
+// allPossibleCombinationDP(denominations, 5) // 2
+// allPossibleCombinationDP(denominations, 10) // 4
+// allPossibleCombinationDP(denominations, 25) // 13
+// allPossibleCombinationDP(denominations, 45) // 39
+// allPossibleCombinationDP(denominations, 100) // 242
+// allPossibleCombinationDP(denominations, 145) // 622
+// allPossibleCombinationDP(denominations, 1451) // 425663
+// allPossibleCombinationDP(denominations, 14511) // 409222339
 
 
 
@@ -209,7 +209,7 @@ allPossibleCombination(denominations, 5)
 
 // Рішення для дробових чисел
 
-function allPossibleCombinationScaled(coins, amount) {
+function allPossibleCombinationDPScaled(coins, amount) {
   // Крок 1: Визначити множник для перетворення в цілі числа.
   // Шукаємо максимальну кількість знаків після коми.
   let maxDecimalPlaces = 0;
@@ -240,4 +240,4 @@ function allPossibleCombinationScaled(coins, amount) {
 }
 
 // const denominations = [0.1,0.25, 0.5, 0.75]
-// console.log(allPossibleCombinationScaled(denominations, 1));
+// console.log(allPossibleCombinationDPScaled(denominations, 1));
