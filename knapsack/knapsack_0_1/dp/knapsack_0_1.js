@@ -63,16 +63,17 @@ function knapsackDP(stuff, max_weight) {
   };
 }
 
-console.log(
-  knapsackDP(
-    [
-      { name: "A", value: 100, weight: 6 },
-      { name: "B", value: 90, weight: 5 },
-      { name: "C", value: 90, weight: 5 },
-    ],
-    10
-  )
-);
+// console.log(
+//   knapsackDP(
+//     [
+//       { name: "A", value: 100, weight: 6 },
+//       { name: "B", value: 90, weight: 5 },
+//       { name: "C", value: 90, weight: 5 },
+//     ],
+//     10
+//   )
+// );
+
 
 // console.log(
 //   knapsackDP(
@@ -95,4 +96,25 @@ console.log(
 //     10
 //   )
 // );
+
+/**
+ * Приклад knapsack для подорожі
+ * Уявімо ви хочете відвідати Лондон і у вас є лише 2 дні,
+ * тож ви хочете знайти баланс між кількістю місць і часом який у вас є на відвідини
+ * і рейтингом цих місць
+ */
+// console.log(
+//   knapsackDP(
+//     [
+//       { name: "Westminster Abby", value: 7, weight: 1 },
+//       { name: "Globe THeater", value: 6, weight: 1 },
+//       { name: "National Gallery", value: 9, weight: 2 },
+//       { name: "British Museum", value: 9, weight: 4 },
+//       { name: "St. Paul's Cathedral", value: 8, weight: 1  },
+//     ],
+//     4
+//   )
+// );
+
+
 
