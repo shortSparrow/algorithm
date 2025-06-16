@@ -7,7 +7,7 @@
  * способами були створені числа по яким вже був обрахунок)
  */
 
-function allPossibleCombinationDP(coins, amount) {
+function coinChangeDP(coins, amount) {
   const dp = new Array(amount + 1).fill(0);
   dp[0] = 1;
 
@@ -24,20 +24,20 @@ function allPossibleCombinationDP(coins, amount) {
 }
 
 const denominations = [1,2,3]
-allPossibleCombinationDP(denominations, 5)
+coinChangeDP(denominations, 5)
 
 
 // const denominations = [1, 5, 10, 25]
-// allPossibleCombinationDP(denominations, 1) // 1
-// allPossibleCombinationDP(denominations, 2) // 1
-// allPossibleCombinationDP(denominations, 5) // 2
-// allPossibleCombinationDP(denominations, 10) // 4
-// allPossibleCombinationDP(denominations, 25) // 13
-// allPossibleCombinationDP(denominations, 45) // 39
-// allPossibleCombinationDP(denominations, 100) // 242
-// allPossibleCombinationDP(denominations, 145) // 622
-// allPossibleCombinationDP(denominations, 1451) // 425663
-// allPossibleCombinationDP(denominations, 14511) // 409222339
+// coinChangeDP(denominations, 1) // 1
+// coinChangeDP(denominations, 2) // 1
+// coinChangeDP(denominations, 5) // 2
+// coinChangeDP(denominations, 10) // 4
+// coinChangeDP(denominations, 25) // 13
+// coinChangeDP(denominations, 45) // 39
+// coinChangeDP(denominations, 100) // 242
+// coinChangeDP(denominations, 145) // 622
+// coinChangeDP(denominations, 1451) // 425663
+// coinChangeDP(denominations, 14511) // 409222339
 
 
 
@@ -209,7 +209,7 @@ allPossibleCombinationDP(denominations, 5)
 
 // Рішення для дробових чисел
 
-function allPossibleCombinationDPScaled(coins, amount) {
+function coinChangeDPScaled(coins, amount) {
   // Крок 1: Визначити множник для перетворення в цілі числа.
   // Шукаємо максимальну кількість знаків після коми.
   let maxDecimalPlaces = 0;
@@ -240,4 +240,4 @@ function allPossibleCombinationDPScaled(coins, amount) {
 }
 
 // const denominations = [0.1,0.25, 0.5, 0.75]
-// console.log(allPossibleCombinationDPScaled(denominations, 1));
+// console.log(coinChangeDPScaled(denominations, 1));

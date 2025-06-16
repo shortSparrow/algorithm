@@ -1,12 +1,12 @@
 
 /**
  * Задача
- * Така сама задача що і allPossibleCombination, але тут треба вивести не просто кількість комбінацій, а самі
+ * Така сама задача що і coinChangeDP, але тут треба вивести не просто кількість комбінацій, а самі
  * всі можливі комбінації
  * 
  */
 
-function allPossibleCombinationItself(coins, amount) {
+function coinChangeWithCoinValueDP(coins, amount) {
   const dp = new Array(amount + 1)
 
   for (let k = 0; k <= amount; k++) {
@@ -44,10 +44,10 @@ function allPossibleCombinationItself(coins, amount) {
 // Приклади використання:
 const denominations = [1, 5, 10, 25];
 
-// console.log(`Amount 1:`, allPossibleCombinationItself(denominations, 1)); // [[1]]
-// console.log(`Amount 2:`, allPossibleCombinationItself(denominations, 2)); // [[1, 1]]
-// console.log(`Amount 5:`, allPossibleCombinationItself(denominations, 5)); // [[1, 1, 1, 1, 1], [5]]
-console.log(`Amount 10:`, allPossibleCombinationItself(denominations, 10));
+// console.log(`Amount 1:`, coinChangeWithCoinValueDP(denominations, 1)); // [[1]]
+// console.log(`Amount 2:`, coinChangeWithCoinValueDP(denominations, 2)); // [[1, 1]]
+// console.log(`Amount 5:`, coinChangeWithCoinValueDP(denominations, 5)); // [[1, 1, 1, 1, 1], [5]]
+console.log(`Amount 10:`, coinChangeWithCoinValueDP(denominations, 10));
 /*
 [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
