@@ -4,6 +4,23 @@ from k_means.initialize_centroids import initialize_centroids
 """
  Це копія функції run_kmeans, але тут прохід по циклу data, що був найбільш
  повільним місцем у run_kmeans замінений на векторизацію, і це значно пришвидшує код 
+
+ Коментарі які описують код в середині run_kmeans_with_vectorization за основу беруть
+ зображення cat.jpg, яке має розмір 640х427 і k=12
+
+ Варто зауважити що навіть з векторизацією чим більший розмір зображення або k, то тим
+ довше будуть йти обрахунки, для розуміння
+ 640х427=273_280 пікселів
+ k = 12; 273_280 * 12 = 3_279_360 - така довжина масиву squared_differences
+ k = 60; 273_280 * 12 = 16_396_800 - така довжина масиву squared_differences
+ k = 120; 273_280 * 12 = 32_793_600 - така довжина масиву squared_differences
+ 
+ Варто зауважити що найбільші втрати часу відбуваються в цих двох рядках
+    squared_differences = (data_expanded - centroids_expanded)**2 
+    sum_squared_differences = np.sum(squared_differences, axis=2)
+Бібліотека працює швидше, можливо через те що ці самі операції написані на низькорівневій мові,
+швидкодію поточної реалізацію можна пришвидшити за допомогою інженерних трюків (інакше обрахувати відстань),
+але не більше, вона все одно буде повільнішою ніж в бібліотеці 
 """
 
 def run_kmeans_with_vectorization(data: np.ndarray, k: int, max_iter=100):
@@ -24,7 +41,7 @@ def run_kmeans_with_vectorization(data: np.ndarray, k: int, max_iter=100):
         # Якщо підсумувати, то до цієї операції data мала форму (N, 3), а після операції data_expanded матиме форму (N, 1, 3)
         data_expanded = data[:, np.newaxis, :]  # (num_pixels, 1, 3)
 
-        # centroids - [[r,g,b], [r,g,b], [r,g,b], [r,g,b], ...] Довжина centroids = 12
+        # centroids - [[r,g,b], [r,g,b], [r,g,b], [r,g,b], ...] Довжина centroids = 12 (вважаємо k=12)
         # centroids[np.newaxis, :, :] - [[ [r,g,b], [r,g,b], [r,g,b], [r,g,b], ... ]]
         # np.newaxis - створює нову вісь
         # перші : - копіюють вісь яка раніше була віссю 0, а тепер буде віссю 1
