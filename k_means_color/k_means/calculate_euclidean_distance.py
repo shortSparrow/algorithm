@@ -8,7 +8,7 @@ import numpy as np
 #     if point1.shape != point2.shape:
 #         raise ValueError("Points must have the same shape/dimension.")
 
-#     # За теоремою Піфагора визначаємо відстань від point1 до point2
+#     # За Евклідовою нормою визначаємо відстань від point1 до point2
 #     # (math.sqrt( (r1-r2)^2 + (g1-g2)^2 + (g1-g2)^2 ))
 #     return np.sqrt(np.sum((point1 - point2) ** 2))
 
