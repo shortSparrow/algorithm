@@ -45,6 +45,33 @@ function maximumSubarraySum(array) {
   return potentialResult[maxSumIndex];
 }
 
+// Те саме що і maximumSubarraySum, та сама складність просто більш компактно
+function maximumSubarraySumV2(array) {
+  let left = 0;
+  let right = 0;
+  let sum = -Infinity;
+
+  for (let i = 0; i < array.length; i++) {
+    let currentSum = 0;
+    for (let j = i; j < array.length; j++) {
+      currentSum += array[j];
+      if (currentSum > sum) {
+        sum = currentSum;
+          left = i;
+          right = j;
+      }
+    }
+  }
+
+  console.log("left ", left);
+  console.log("right: ", right);
+  console.log("sum ", sum);
+  return [left, right, sum];
+}
+
+console.log(maximumSubarraySumV2([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // [4, -1, 2, 1]
+
+
 // console.log(maximumSubarraySum([-2, 1, -3, 4, -1, 2, 1, -5, 4])); // [4, -1, 2, 1]
 
 
