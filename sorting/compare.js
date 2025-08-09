@@ -6,6 +6,7 @@ const {mergeSort, mergeSortV2} = require('./mergeSort/mergeSort')
 const {quickSort} = require('./quickSort/quickSort')
 const {quickSortRandomPivot} = require('./quickSort/quickSortRandomPivot')
 const {radixSort} = require('./radixSort/radixSort')
+const {heapSortV2} = require('./heapSort/heapSort')
 
 
 const largeArray = Array.from({ length: 100_000 }, () => Math.floor(Math.random() * 100_000));
@@ -21,6 +22,7 @@ const almostSortedLargeArray = Array.from({ length: 100_000 }, (_, i) => i + 1).
 // | selectionSortBidirectional| 8s         | 10s              | 10s               | 6.8s                   |
 // | bubbleSortingOptimized    | 37s        | 9ms              | 23s               | 15.4s                  |
 // | insertionSort             | 10s        | 3.8ms            | 18s               | 155ms                  |
+// | heapSort                  | 120ms      | 120ms            | 120ms             | 120ms                  |
 // | mergeSort                 | 158ms      | 120ms            | 105ms             | 110ms                  |
 // | mergeSortV2               | 121ms      | 120ms            | 115ms             | 120ms                  |
 // | quickSort                 | 60ms       | error            | error             | 110ms                  |
@@ -69,6 +71,10 @@ console.log('START')
 // console.time("insertionSort")
 // insertionSort(largeArray) // 10s
 // console.timeEnd("insertionSort")
+
+// console.time("heapSort")
+// heapSortV2(largeArray) // 120ms
+// console.timeEnd("heapSort")
 
 // console.time("mergeSort")
 // mergeSort(largeArray) // 158ms
@@ -121,6 +127,10 @@ console.log('START')
 // insertionSort(largeArraySorted) // 3.8ms
 // console.timeEnd("insertionSort")
 
+// console.time("heapSort")
+// heapSortV2(largeArraySorted) // 120ms
+// console.timeEnd("heapSort")
+
 // console.time("mergeSort")
 // mergeSort(largeArraySorted) // 120ms
 // console.timeEnd("mergeSort")
@@ -164,6 +174,10 @@ console.log('START')
 // insertionSort(largeArrayReversed) // 18s
 // console.timeEnd("insertionSort")
 
+// console.time("heapSort")
+// heapSortV2(largeArrayReversed) // 120ms
+// console.timeEnd("heapSort")
+
 // console.time("mergeSort")
 // mergeSort(largeArrayReversed) // 105ms
 // console.timeEnd("mergeSort")
@@ -206,6 +220,10 @@ console.log('START')
 // console.time("insertionSort")
 // insertionSort(almostSortedLargeArray) // 155ms
 // console.timeEnd("insertionSort")
+
+// console.time("heapSort")
+// heapSortV2(almostSortedLargeArray) // 120ms
+// console.timeEnd("heapSort")
 
 // console.time("mergeSort")
 // mergeSort(almostSortedLargeArray) // 110ms

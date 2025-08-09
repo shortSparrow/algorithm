@@ -92,7 +92,7 @@ function maxHeapify(arr, i, heapSize) {
 }
 
 // Простіший для розуміння приклад (але створює новий масив)
-function sortHeap(arr) {
+function heapSort(arr) {
   buildMaxHeap(arr);
 
   const res = []
@@ -110,7 +110,7 @@ function sortHeap(arr) {
 }
 
 // Приклад з книги
-function sortHeapV2(arr) {
+function heapSortV2(arr) {
   buildMaxHeap(arr);
 
   for (let i = arr.length - 1; i > 0; i--) {
@@ -126,8 +126,9 @@ function sortHeapV2(arr) {
   console.log("sorted arr: ", arr);
 }
 
-sortHeap([9, 6, 4, 9, 0, 1, 3, 44, 54, 2, -1]);
+// heapSort([9, 6, 4, 9, 0, 1, 3, 44, 54, 2, -1]);
 
+module.exports = {heapSortV2}
 
 
 /**
