@@ -102,4 +102,8 @@
  *    Remove - O(log n)
  *    Search - O(n)
  * 
+ *    Також замість n можна використати h - висоту heap
+ *    Insert - O(h)
+ *    Remove - O(h)
+ * 
  * */
