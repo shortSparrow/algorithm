@@ -1,6 +1,6 @@
 /**
  * Priority queue використовує minBinaryHeap (найменше значення завжди буде наверху)
- * 
+ *
  * !Увага
  * Поточна реалізація не гарантує що якщо додано два елементи з однаковим priority то вони будуть
  * дістані з queue в послідовності в якій їх поклали, для цього потрібна додаткова обробка
@@ -20,7 +20,7 @@ class PriorityQueue {
   enqueue(value, priority) {
     const node = new Node(value, priority);
     this.values.push(node);
-    
+
     return this.bubbleUp();
   }
 
@@ -50,21 +50,21 @@ class PriorityQueue {
     if (this.values.length === 0) {
       return [];
     }
-    const min = this.values[0]
+    const min = this.values[0];
     this.values[0] = lastNode;
     this.bubbleDown();
 
     return min;
   }
 
-  bubbleDown() {
-    let nodeIdx = 0;
-    
+  bubbleDown(idx=0) {
+    let nodeIdx = idx;
+
     while (true) {
       const leftChildIdx = 2 * nodeIdx + 1;
       const rightChildIdx = 2 * nodeIdx + 2;
       const node = this.values[nodeIdx];
-  
+
       let leftChild = null;
       let rightChild = null;
       let swap = null;
@@ -87,14 +87,25 @@ class PriorityQueue {
       }
 
       if (swap === null) {
-        break
+        break;
       }
 
       this.values[nodeIdx] = this.values[swap];
       this.values[swap] = node;
       nodeIdx = swap;
     }
+  }
 
+  delete(value) {
+    const index = this.values.findIndex((item) => item.value === value);
+
+    if (index == -1) {
+      return null;
+    }
+
+    const lastItem = this.values.pop();
+    this.values[index] = lastItem;
+    // this.bubbleDown(index); // Починаємо bubbleDown з індексу а не з кореня
   }
 }
 
@@ -119,4 +130,3 @@ priorityQueue.dequeue();
 console.log(priorityQueue.values);
 priorityQueue.dequeue();
 console.log(priorityQueue.values);
-
