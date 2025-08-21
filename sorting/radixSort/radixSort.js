@@ -1,53 +1,103 @@
+/**
+ * Тут Radix Sort представлений як LSD (Least Significant Digit) Radix Sort
+ *
+ * LSD (Least Significant Digit) сортує, починаючи з молодших розрядів (одиниці, потім десятки, потім сотні і так далі).
+ * MSD (Most Significant Digit) сортує, починаючи з старших розрядів (сотні, потім десятки, потім одиниці і так далі).
+ *
+ *
+ * Опис алгоритму LSD
+ *    - Визначаємо найбільший розряд числа для вхідного масиву, тобто скільки цифр
+ *      у числі (для числа 1000 - це 4)
+ *    - Запускаємо цикл від 0 до найбільшого розряду
+ *    - Створюємо 10 комірок (бо у нас десяткова система, а в ній максимум 10 цифр)
+ *    - У циклі по розрядам ітеруємося по вхідному масиву і визначаємо для кожного числа у яку
+ *      комірку його поставити. Наприклад число 345, якщо ми на першому розряді (одиниці)
+ *      то беремо цифру 5 (бо п'ять одиниць) і ставимо його на індекс 5 і так для всіх чисел.
+ * 
+ *      Для масиву [ 12, 23, 345, 2345, 5467, 9852 ] на 1 ітерації (одиниці) маємо такий результат
+ *        0,   1,     2,       3,   4,       5,       6,   7,    8,  9
+ *      [ [], [], [12, 9852], [23], [], [345, 2345], [], [5467], [], []  ]
+ *      І потім вивільняємо цей масив
+ *      [12, 9852, 23, 345, 2345, 5467]
+ *
+ *      Далі ідемо до ітерації по розряду 2 (десятки)
+ *      Маємо масив [12, 9852, 23, 345, 2345, 5467]
+ *        0,   1,    2,   3,    4,           5       6,    7,  8,  9
+ *      [ [], [12], [23], [], [345, 2345], [9852], [5467], [], [], []  ]
+ *      І потім вивільняємо цей масив
+ *      [12,23,345,2345,9852,5467]
+ *
+ *      Далі ідемо до ітерації по розряду 3 (сотні)
+ *      Маємо масив [12,23,345,2345,9852,5467]
+ *           0,     1,  2,   3,      4,      5    6,  7,    8,    9
+ *      [ [12,23], [], [], [2345], [5467], [345], [], [], [9852], []  ]
+ *      І потім вивільняємо цей масив
+ *      [12,23,2345,5467,345,9852]
+ *
+ *
+ *      Далі ідемо до ітерації по розряду 4 (тисячі)
+ *      Маємо масив [12,23,2345,5467,345,9852]
+ *              0,      1,     2,  3,  4,     5     6,  7,  8,    9
+ *      [ [12,23,345,], [], [2345], [], [], [5467], [], [], [], [9852]  ]
+ *      І потім вивільняємо цей масив
+ *      [12,23,345,2345,5467,9852]
+ *
+ *
+ * Як на мене LSD є значно простішим для розуміння бо не містить рекурсії
+ */
 
 function getDigit(num, i) {
-  return Math.floor(Math.abs(num) / Math.pow(10, i) % 10)
+  return Math.floor((Math.abs(num) / Math.pow(10, i)) % 10);
 }
 
-// console.log(getDigit(34567, 1));
+// console.log(getDigit(34567, 0)); // 7
+// console.log(getDigit(34567, 1)); // 6
 
 function digitCount(num) {
-  if(num === 0) return 1
+  if (num === 0) return 1;
 
-  return Math.floor(Math.log10(Math.abs(num))) + 1
+  return Math.floor(Math.log10(Math.abs(num))) + 1;
 }
- 
-// console.log(digitCount(9876));
-// console.log(digitCount(100));
+
+// console.log(digitCount(9876)); // 4
+// console.log(digitCount(100)); // 3
 
 function mostDigits(nums) {
-  let maxDigits = 0
+  let maxDigits = 0;
   for (let i = 0; i < nums.length; i++) {
-    maxDigits = Math.max(maxDigits, digitCount(nums[i]))
+    maxDigits = Math.max(maxDigits, digitCount(nums[i]));
   }
 
-  return maxDigits
+  return maxDigits;
 }
-
 
 // mostDigits([100, 1010, 1, 500]); // 4
 // mostDigits([0, 100000, 400, 12, 8]); // 6
+console.log(mostDigits([1, 9, 10, 100, 99])); // 3
 
-// console.log(mostDigits([1, 9, 10, 100, 99]));
+function radixSortLSD(nums) {
+  const maxDigitsCount = mostDigits(nums);
 
-function radixSort(nums) {
-  const maxDigitsCount = mostDigits(nums)
+  for (let i = 0; i < maxDigitsCount; i++) {
+    /**
+     * Створюємо кошики для 10 цифр. 10, тому що ми сортуємо числа в десятковій системі числення.
+     * У десятковій системі існує рівно 10 цифр: від 0 до 9.
+     */
+    let digitBucket = Array.from({ length: 10 }, () => []);
 
-  for(let i=0; i<maxDigitsCount; i++) {
-    let digitBucket = Array.from({length: 10}, () => [])
-
-    for(let j=0; j<nums.length; j++) {
-      const digit = getDigit(nums[j], i)
-      digitBucket[digit].push(nums[j])
+    for (let j = 0; j < nums.length; j++) {
+      const digit = getDigit(nums[j], i);
+      digitBucket[digit].push(nums[j]);
     }
 
-    nums = [].concat(...digitBucket)
+    nums = [].concat(...digitBucket);
   }
 
-  return nums
+  return nums;
 }
 
-// console.log(radix([23,345,5467,12,2345,9852]));
-module.exports = {radixSort}
+console.log(radixSortLSD([23, 345, 5467, 12, 2345, 9852])); // [ 12, 23, 345, 2345, 5467, 9852 ]
+module.exports = { radixSort: radixSortLSD };
 
 /*
   Big O
