@@ -101,3 +101,21 @@ const almostSortedLargeArray = Array.from({ length: N }, (_, i) => i + 1);
 console.time("Quicksort");
 quickSortRandomPivot(almostSortedLargeArray); 
 console.timeEnd("Quicksort");
+
+
+/**
+ * Якщо матимемо масив лише з 0 і 1 - 111111.....00000....
+ * Або лише з 0, чи 1 чи будь якої іншої однієї цифри
+ * то наш quickSort зламається через Maximum call stack size exceeded
+ * 
+ * Щоб цього уникнути можна використати:
+ * 3-смугове розбиття (Dijkstra's 3-way partition)
+ * Розбиває масив на 3 частини: < pivot, = pivot, > pivot.
+ */
+// const N = 5_000_0;
+// const arr0 = Array.from({ length: N }, (_, i) => 0);
+// const arr1 = Array.from({ length: N }, (_, i) => 1);
+
+// console.time("Quicksort");
+// quickSortRandomPivot([...arr1, ...arr0]); 
+// console.timeEnd("Quicksort");
